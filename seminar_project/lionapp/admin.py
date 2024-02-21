@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from lionapp.models import Post
+
+admin.site.register(Post)
