@@ -1,10 +1,6 @@
-from django.urls import path
+from django.db import models
 
-
-from lionapp import views
-
-urlpatterns = [
-    path('create/',views.create_post),
-    path('<int:pk>/',views.get_post),
-    path('delete/<int:pk>',views.delete_post)
-]
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    create_at = models.DateTimeField(auto_now_add=True)
