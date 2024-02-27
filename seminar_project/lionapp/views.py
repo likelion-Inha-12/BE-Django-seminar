@@ -5,7 +5,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from lionapp.models import *
 
-@csrf_exempt
 def create_post(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -31,7 +30,6 @@ def get_post(request, pk):
     }
     return JsonResponse(data, status=200)
 
-@csrf_exempt
 def delete_post(request, pk):
     if request.method == 'DELETE':
         post = get_object_or_404(Post, pk=pk)
