@@ -8,15 +8,6 @@ from rest_framework.response import Response
 def health(request):
     return HttpResponse(status = 200, content = "seminar server ok!")
 
-def api_response(status):
-    return Response(status=status)
-
-def api_response(message, status):
-    response = {
-        "message":message,
-    }
-    return Response(response, status=status)
-
 def api_response(data, message, status):
     response = {
         "message":message,

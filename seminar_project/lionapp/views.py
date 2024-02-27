@@ -58,26 +58,24 @@ class PostApiView(APIView):
         post = self.get_object(pk)
 
         postSerializer = PostSerializer(post)
-        message = '조회 성공'
+        message = f"id: {post.pk}번 포스트 조회 성공"
         return api_response(data = postSerializer.data, message = message, status = status.HTTP_200_OK)
     
     def delete(self, request, pk):
         post = self.get_object(pk)
         post.delete()
         
-        message = f"id: {pk} 포스트 삭제 완료"
-        return api_response(message = message, status = status.HTTP_200_OK)
+        message = f"id: {pk}번 포스트 삭제 성공"
+        return api_response(data = None, message = message, status = status.HTTP_200_OK)
 
 
 @api_view(['POST'])
-def post(self, request):
-    if request.method == "POST":
+def create_post_v2(request):
+    post = Post(
+        title = request.data.get('title'),
+        content = request.data.get('content')
+    )
+    post.save()
 
-        post = Post(
-            title = request.data.get('title'),
-            content = request.data.get('content')
-        )
-        post.save()
-
-        message = 'success'
-        return api_response(message = message, status = status.HTTP_201_CREATED)
+    message = f"id: {post.pk}번 포스트 생성 성공"
+    return api_response(data = None, message = message, status = status.HTTP_201_CREATED)
