@@ -12,6 +12,7 @@ INSTALLED_APPS = [
     # my app
     'util',
     'lionapp',
+    'users',
     # third party app
     'rest_framework',
     # Basic app
