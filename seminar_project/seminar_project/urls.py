@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin', admin.site.urls),
     path('health/', include('util.urls')),
     path('api/', include('lionapp.urls')), 
+    path('assignment/', include('assignment.urls'))
 ]
