@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from django.http import HttpResponse
 from lionapp.models import *
 
 @csrf_exempt
@@ -41,3 +42,9 @@ def delete_post(request, pk):
         }
         return JsonResponse(data, status=200)
     return JsonResponse({'message':'DELETE 요청만 허용됩니다.'})
+
+def get_comment(request, post_id):
+    if request.method == 'GET':
+        post = get_object_or_404(Post, pk=post_id)
+        comments = post.comments.all()
+        return HttpResponse(comments, status=200)
